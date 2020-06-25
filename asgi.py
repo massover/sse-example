@@ -4,8 +4,7 @@ import os
 import sys
 
 from django.conf import settings
-from django.core.wsgi import get_wsgi_application
-from django.http import HttpResponse, StreamingHttpResponse
+from django.http import HttpResponse
 from django.urls import path
 
 from handlers import get_asgi_application
@@ -16,12 +15,10 @@ settings.configure(
     ALLOWED_HOSTS=["*"],
     ROOT_URLCONF=__name__,
     SECRET_KEY="super-secret-key",
-    WSGI_APPLICATION=f"{__name__}.wsgi_application",
-    ASGI_APPLICATION=f"{__name__}.asgi_application",
+    ASGI_APPLICATION=f"{__name__}.application",
 )
 
-wsgi_application = get_wsgi_application()
-asgi_application = get_asgi_application()
+application = get_asgi_application()
 
 
 async def stream():

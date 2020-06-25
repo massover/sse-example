@@ -1,4 +1,6 @@
 # sse example
 
 poetry install
-poetry run uvicorn app:asgi_application
+
+poetry run gunicorn wsgi:application --workers 1
+poetry run uvicorn asgi:application --workers 1
